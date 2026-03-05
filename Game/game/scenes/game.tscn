@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dhh78k34kbkmc"]
+
+[ext_resource type="Script" uid="uid://ckgtjefqrjjnj" path="res://scripts/game_state.gd" id="1_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://cl73j0k3v6mdp" path="res://scenes/background.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://dftrpkfy22rxb" path="res://scenes/player.tscn" id="3_lnu2h"]
+
+[node name="Game" type="Node2D" unique_id=1041956335]
+
+[node name="GameState" type="Node" parent="." unique_id=804753479]
+unique_name_in_owner = true
+script = ExtResource("1_lnu2h")
+
+[node name="Timer" type="Timer" parent="GameState" unique_id=874152162]
+wait_time = 1.5
+autostart = true
+
+[node name="Background" parent="." unique_id=1894854133 instance=ExtResource("2_yqjtg")]
+
+[node name="Player" parent="." unique_id=1326797433 instance=ExtResource("3_lnu2h")]
+unique_name_in_owner = true
+position = Vector2(464, 510)
+
+[node name="Knives" type="Node" parent="." unique_id=502280918]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="GameState/Timer" to="GameState" method="_on_timer_timeout"]

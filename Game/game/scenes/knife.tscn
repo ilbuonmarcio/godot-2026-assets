@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bbuin82srubrp"]
+
+[ext_resource type="Script" uid="uid://douh4ada6f2dr" path="res://scripts/knife.gd" id="1_syuqf"]
+[ext_resource type="Texture2D" uid="uid://cblujrils0lqj" path="res://images/throwknife.png" id="1_ufhdc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ufhdc"]
+radius = 18.0
+height = 138.0
+
+[node name="Knife" type="Area2D" unique_id=72736020]
+z_index = 10
+script = ExtResource("1_syuqf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=561773704]
+position = Vector2(-1.9073486e-06, -1.9073486e-06)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_ufhdc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=354035682]
+shape = SubResource("CapsuleShape2D_ufhdc")

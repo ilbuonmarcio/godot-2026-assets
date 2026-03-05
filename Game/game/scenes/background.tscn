@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cl73j0k3v6mdp"]
+
+[ext_resource type="Texture2D" uid="uid://df744sp2nrmdk" path="res://images/background.png" id="1_y0upk"]
+[ext_resource type="AudioStream" uid="uid://cm8ljvts3a3im" path="res://audio/background_music.mp3" id="2_jougr"]
+
+[node name="Background" type="Node" unique_id=1894854133]
+
+[node name="Image" type="TextureRect" parent="." unique_id=692006481]
+z_index = -1
+offset_right = 960.0
+offset_bottom = 960.0
+texture = ExtResource("1_y0upk")
+expand_mode = 1
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1946113489]
+stream = ExtResource("2_jougr")
+volume_db = -18.0
+autoplay = true
