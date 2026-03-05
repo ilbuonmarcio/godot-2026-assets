@@ -2,8 +2,15 @@ extends Node
 
 @onready var background = %Background
 @onready var player = %Player
+@onready var game_over_screen = %GameOverScreen
+@onready var game_over_timer = %GameOverTimer
+@onready var hearts_label = %HeartsLabel
+@onready var score_label = %ScoreLabel
 
 var enemy_template = preload("res://scenes/enemy.tscn")
+
+var score = 0
+var game_over = false
 
 const WIDTH = 960
 const HEIGHT = 960
@@ -19,13 +26,42 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	mouse_coords = get_viewport().get_mouse_position()
 	player_coords = %Player.position
-	# print(player_coords)
+	
+	hearts_label.text = "Hearts: " + str(player.HEARTS)
+	score_label.text = "Score: " + str(score)
+	
+	# Check if game over
+	if player.HEARTS <= 0 and not game_over:
+		game_over_screen.visible = true
+		game_over_timer.start()
+		game_over = true
 
 func _on_timer_timeout() -> void:
-	var random_x = [randi_range(-32, 0), randi_range(WIDTH, WIDTH + 32)].pick_random()
-	var random_y = [randi_range(-32, 0), randi_range(HEIGHT, HEIGHT + 32)].pick_random()
+	var random_x = randf() * 960
+	var random_y = randf() * 960
+	
+	if random_x >= 960 / 2:
+		random_x += 960 / 2
+	if random_x <= 960 / 2:
+		random_x -= 960 / 2
+	if random_y >= 960 / 2:
+		random_y += 960 / 2
+	if random_y <= 960 / 2:
+		random_y -= 960 / 2
 	
 	var enemy = enemy_template.instantiate()
 	enemy.position = Vector2(random_x, random_y)
 	add_child(enemy)
-	print("Enemy spawned")
+	enemy.set_game_state(self)
+	enemy.set_player(player)
+	# print("Enemy spawned")
+
+func score_point():
+	score += 1
+	print("Current score: {0}".format([score]))
+	
+func _on_game_over_timer_timeout() -> void:
+	get_tree().reload_current_scene()
+	
+	
+	

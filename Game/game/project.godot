@@ -22,6 +22,11 @@ window/size/viewport_height=960
 window/size/resizable=false
 window/size/borderless=true
 
+[global_group]
+
+Enemies=""
+Knives=""
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

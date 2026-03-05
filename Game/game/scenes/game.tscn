@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ckgtjefqrjjnj" path="res://scripts/game_state.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://cl73j0k3v6mdp" path="res://scenes/background.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://dftrpkfy22rxb" path="res://scenes/player.tscn" id="3_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://bdq4dm6v7d3ps" path="res://images/game_over.png" id="4_lbhrr"]
 
 [node name="Game" type="Node2D" unique_id=1041956335]
 
@@ -11,8 +12,13 @@ unique_name_in_owner = true
 script = ExtResource("1_lnu2h")
 
 [node name="Timer" type="Timer" parent="GameState" unique_id=874152162]
-wait_time = 1.5
+wait_time = 0.7
 autostart = true
+
+[node name="GameOverTimer" type="Timer" parent="GameState" unique_id=272158190]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
 
 [node name="Background" parent="." unique_id=1894854133 instance=ExtResource("2_yqjtg")]
 
@@ -23,4 +29,37 @@ position = Vector2(464, 510)
 [node name="Knives" type="Node" parent="." unique_id=502280918]
 unique_name_in_owner = true
 
+[node name="Bombs" type="Node" parent="." unique_id=1475833620]
+unique_name_in_owner = true
+
+[node name="GameOverScreen" type="TextureRect" parent="." unique_id=1625632898]
+unique_name_in_owner = true
+visible = false
+z_index = 100
+offset_right = 960.0
+offset_bottom = 961.0
+texture = ExtResource("4_lbhrr")
+expand_mode = 1
+
+[node name="HeartsLabel" type="RichTextLabel" parent="." unique_id=290125810]
+unique_name_in_owner = true
+z_index = 99
+offset_right = 244.0
+offset_bottom = 74.0
+theme_override_font_sizes/normal_font_size = 30
+text = "Hearts: -1"
+
+[node name="ScoreLabel" type="RichTextLabel" parent="." unique_id=1394467386]
+unique_name_in_owner = true
+z_index = 99
+offset_left = 777.0
+offset_top = 1.0
+offset_right = 957.0
+offset_bottom = 69.0
+theme_override_font_sizes/normal_font_size = 30
+text = "Score: -1"
+horizontal_alignment = 2
+
 [connection signal="timeout" from="GameState/Timer" to="GameState" method="_on_timer_timeout"]
+[connection signal="timeout" from="GameState/GameOverTimer" to="GameState" method="_on_game_over_timer_timeout"]
+[connection signal="area_entered" from="Player" to="Player" method="_on_area_entered"]

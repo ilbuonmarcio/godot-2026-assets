@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cblujrils0lqj" path="res://images/throwknife.png" id="1_ufhdc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ufhdc"]
-radius = 18.0
+radius = 22.0
 height = 138.0
 
-[node name="Knife" type="Area2D" unique_id=72736020]
+[node name="Knife" type="Area2D" unique_id=72736020 groups=["Knives"]]
 z_index = 10
 script = ExtResource("1_syuqf")
 

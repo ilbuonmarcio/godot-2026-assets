@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://iullhxdf53na"]
+
+[ext_resource type="Script" uid="uid://bt72n5fuegp1x" path="res://scripts/bomb.gd" id="1_vpdcx"]
+[ext_resource type="Texture2D" uid="uid://chr85al2us2pf" path="res://images/bomb.png" id="2_vpdcx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j15uc"]
+radius = 99.0
+
+[node name="Bomb" type="Area2D" unique_id=72736020 groups=["Knives"]]
+z_index = 10
+script = ExtResource("1_vpdcx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=561773704]
+position = Vector2(8, -10)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_vpdcx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=354035682]
+shape = SubResource("CircleShape2D_j15uc")
