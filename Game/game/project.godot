@@ -26,6 +26,9 @@ window/size/borderless=true
 
 Enemies=""
 Knives=""
+Bombs=""
+Boss=""
+Fireballs=""
 
 [physics]
 

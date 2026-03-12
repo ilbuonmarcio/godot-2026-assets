@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://chr85al2us2pf" path="res://images/bomb.png" id="2_vpdcx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j15uc"]
-radius = 99.0
+radius = 80.00625
 
-[node name="Bomb" type="Area2D" unique_id=72736020 groups=["Knives"]]
+[node name="Bomb" type="Area2D" unique_id=72736020 groups=["Bombs"]]
 z_index = 10
 script = ExtResource("1_vpdcx")
 
@@ -17,3 +17,14 @@ texture = ExtResource("2_vpdcx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=354035682]
 shape = SubResource("CircleShape2D_j15uc")
+
+[node name="SpeedTimer" type="Timer" parent="." unique_id=2039923672]
+wait_time = 0.4
+autostart = true
+
+[node name="DeleteTimer" type="Timer" parent="." unique_id=1494613920]
+wait_time = 0.75
+one_shot = true
+
+[connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]
+[connection signal="timeout" from="DeleteTimer" to="." method="_on_delete_timer_timeout"]

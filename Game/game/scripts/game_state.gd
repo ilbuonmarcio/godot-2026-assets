@@ -6,11 +6,16 @@ extends Node
 @onready var game_over_timer = %GameOverTimer
 @onready var hearts_label = %HeartsLabel
 @onready var score_label = %ScoreLabel
+@onready var fireballs = %Fireballs
 
 var enemy_template = preload("res://scenes/enemy.tscn")
+var boss_template = preload("res://scenes/boss.tscn")
 
 var score = 0
 var game_over = false
+
+var boss_spawned = false
+const BOSS_SPAWN_SCORE_THRESHOLD = 5
 
 const WIDTH = 960
 const HEIGHT = 960
@@ -26,6 +31,16 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	mouse_coords = get_viewport().get_mouse_position()
 	player_coords = %Player.position
+	
+	if score >= BOSS_SPAWN_SCORE_THRESHOLD and not boss_spawned:
+		var boss = boss_template.instantiate()
+		boss.position = Vector2(WIDTH / 2, -200)
+		add_child(boss)
+		boss.set_game_state(self)
+		boss.set_player(player)
+		boss.set_fireballs(fireballs)
+		
+		boss_spawned = true
 	
 	hearts_label.text = "Hearts: " + str(player.HEARTS)
 	score_label.text = "Score: " + str(score)

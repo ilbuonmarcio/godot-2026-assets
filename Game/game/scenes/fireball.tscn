@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cv1ofsvyfle1d"]
+
+[ext_resource type="Script" uid="uid://buf8uoub05wbc" path="res://scripts/fireball.gd" id="1_1gl40"]
+[ext_resource type="Texture2D" uid="uid://dvowg2skbmbo0" path="res://images/fireball.png" id="2_1gl40"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ufhdc"]
+radius = 19.0
+height = 126.0
+
+[node name="Fireball" type="Area2D" unique_id=72736020 groups=["Fireballs"]]
+z_index = 10
+script = ExtResource("1_1gl40")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=561773704]
+scale = Vector2(0.32865855, 0.32865852)
+texture = ExtResource("2_1gl40")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=354035682]
+shape = SubResource("CapsuleShape2D_ufhdc")

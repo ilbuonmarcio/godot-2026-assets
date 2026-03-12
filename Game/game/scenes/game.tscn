@@ -32,6 +32,9 @@ unique_name_in_owner = true
 [node name="Bombs" type="Node" parent="." unique_id=1475833620]
 unique_name_in_owner = true
 
+[node name="Fireballs" type="Node" parent="." unique_id=1147004538]
+unique_name_in_owner = true
+
 [node name="GameOverScreen" type="TextureRect" parent="." unique_id=1625632898]
 unique_name_in_owner = true
 visible = false

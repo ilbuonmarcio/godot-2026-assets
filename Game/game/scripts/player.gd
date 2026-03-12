@@ -3,6 +3,8 @@ extends Area2D
 const PLAYER_SPEED = 275
 var HEARTS = 3
 
+const INVINCIBLE = false
+
 @onready var game_state = %GameState
 @onready var knives = %Knives
 @onready var bombs = %Bombs
@@ -62,13 +64,14 @@ func throw_bomb(at: Vector2):
 	bombs.add_child(bomb)
 	
 func hit():
-	HEARTS -= 1
+	if not INVINCIBLE:
+		HEARTS -= 1
 	# print("Ouch! Hearts left: ", HEARTS)
 	
 	if HEARTS == 0:
 		sprite2d_texture.texture = load("res://images/grave.png")
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Enemies"):
+	if area.is_in_group("Enemies") or area.is_in_group("Fireballs"):
 		hit()
 		area.vanish()

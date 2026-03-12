@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bq3umn5612du"]
+
+[ext_resource type="Script" uid="uid://dx1xrc7b0dfsr" path="res://scripts/boss.gd" id="1_neq0i"]
+[ext_resource type="Texture2D" uid="uid://doewnxgbgrh43" path="res://images/boss.png" id="2_neq0i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_md0e3"]
+radius = 69.0
+height = 218.0
+
+[node name="Boss" type="Area2D" unique_id=284203933 groups=["Boss"]]
+z_index = 5
+script = ExtResource("1_neq0i")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1073053583]
+position = Vector2(-1.9073486e-06, -1.9073486e-06)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("2_neq0i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1689968557]
+shape = SubResource("CapsuleShape2D_md0e3")
+
+[node name="FinishedGameTimer" type="Timer" parent="." unique_id=1005548702]
+wait_time = 2.0
+one_shot = true
+
+[node name="ThrowAtPlayerTimer" type="Timer" parent="." unique_id=1269420349]
+autostart = true
+
+[node name="ThrowRadiusTimer" type="Timer" parent="." unique_id=2092448776]
+wait_time = 7.0
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="timeout" from="FinishedGameTimer" to="." method="_on_finished_game_timer_timeout"]
+[connection signal="timeout" from="ThrowAtPlayerTimer" to="." method="_on_throw_at_player_timer_timeout"]
+[connection signal="timeout" from="ThrowRadiusTimer" to="." method="_on_throw_radius_timer_timeout"]
